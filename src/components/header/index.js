@@ -2,12 +2,12 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { BackIcon } from "../../assets/svg";
 
-const Header = (props ) => {
+const Header = (props) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => props.onPressLeftButton()}
-        style={{  }}
+        style={{}}
       >
         <BackIcon />
       </TouchableOpacity>

@@ -1,0 +1,6 @@
+# Ignore env files to avoid committing secrets
+.env
+.env.dev.android
+.env.dev.ios
+
+

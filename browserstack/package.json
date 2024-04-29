@@ -1,0 +1,22 @@
+{
+  "name": "browerstack",
+  "version": "1.0.0",
+  "description": "This repository demonstrates how to run Appium tests using [WebdriverIO](http://webdriver.io/) on BrowserStack App Automate.",
+  "scripts": {
+    "test:ios": "OS=ios ./node_modules/.bin/wdio browserstack.conf.js",
+    "test:android": "OS=android ./node_modules/.bin/wdio browserstack.conf.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/browserstack/webdriverio-appium-app-browserstack/issues"
+  },
+  "homepage": "https://github.com/browserstack/webdriverio-appium-app-browserstack#readme",
+  "dependencies": {
+    "@wdio/cli": "^8.3.5",
+    "@wdio/local-runner": "^8.3.5",
+    "@wdio/mocha-framework": "^8.3.0",
+    "browserstack-local": "^1.4.8",
+    "dotenv": "^16.0.0"
+  }
+}

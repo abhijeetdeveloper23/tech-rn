@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Parse env vars from ../.env
+ENV="$(pwd)/.env"
+if [ -f "$(pwd)/.env" ]; then
+   export $(cat $ENV | grep -v '#' | sed 's/\r$//' | awk '/=/ {print $1}' )
+fi
+echo "Uploading ${2} build to ${1}."
+# Parse command line args
+FILE_PATH="${ANDROID_APP_PATH}"
+if [[ "$2" == "ios" ]]; then
+    FILE_PATH="${IOS_APP_PATH}"
+fi
+# Prompt for user credentials if not found in the .env file.
+if [[ -z "${BROWSERSTACK_USER}" ]]; then
+    read -r -p 'Enter your Browserstack User ID : 'USER
+else
+    USER="${BROWSERSTACK_USER}"
+fi
+if [[ -z "${BROWSERSTACK_KEY}" ]]; then
+    read -s -r -p 'Enter your Browserstack Access Key: ' KEY
+else
+    KEY="${BROWSERSTACK_KEY}"
+fi
+# Upload to the service specified in the args
+if [[ "$1" == "live" ]]; then
+    curl -u "${LIVE_USER}:${LIVE_KEY}" -X POST "https://api-cloud.browserstack.com/app-live/upload" -F "file=@${FILE_PATH}"
+else
+    curl -u "${USER}:${KEY}" -X POST "https://api-cloud.browserstack.com/app-automate/upload" -F "file=@${FILE_PATH}"
+fi
